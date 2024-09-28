@@ -5,13 +5,12 @@ const fs = require('fs');
 const server = jsonServer.create();
 const filePath = path.join(__dirname, 'database.json');
 
-// Đảm bảo rằng database.json có thể được đọc
 let db;
 try {
     const data = fs.readFileSync(filePath, 'utf-8');
     db = JSON.parse(data);
 } catch (error) {
-    console.error('Error reading database.json:', error);
+    console.error('Error reading database.json:', error.message);
     process.exit(1);  // Dừng server nếu không thể đọc tệp
 }
 
