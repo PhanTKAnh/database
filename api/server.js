@@ -24,5 +24,11 @@ server.use(jsonServer.rewriter({
 }));
 server.use(router);
 
+// Xử lý lỗi
+server.use((err, req, res, next) => {
+    console.error('Server error:', err.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
 // Xuất server để Vercel có thể sử dụng
 module.exports = server;
